@@ -42,10 +42,10 @@ The system will handle user login and access control. It will potentially offer 
 - Must expose RESTful API endpoints for: /register, /login, /profile, /update, /logout
   
 **Non-functional Requirements**  
-Security: encryption at rest and in transit (HTTPS, hased passwords)
-Scalability: should support multiple services connecting simultaneously
-Performance: login responses < 500 - 800 ms
-Localization: support english and samoan UI text (future goal)
+Security: encryption at rest and in transit (HTTPS, hased passwords)  
+Scalability: should support multiple services connecting simultaneously  
+Performance: login responses < 500 - 800 ms  
+Localization: support english and samoan UI text (future goal)  
 Maintainability: have a clear code structure with documentation  
   
 **Tech Stack**
