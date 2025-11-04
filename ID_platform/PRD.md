@@ -32,6 +32,7 @@ The system will handle user login and access control. It will potentially offer 
 | User login | A returning user logs in to their Bytewatchers account |
 | Password reset | A user forgets their password and requests a reset link |
 | Profile details update | A user edits their display name or contact info |
+| API Authentication | Another app verifies a user using the ID system |
   
 **Functional Requirements**
 - Must store user data securely
@@ -40,7 +41,7 @@ The system will handle user login and access control. It will potentially offer 
 - Must prevent duplicate accounts
 - Must expose RESTful API endpoints for: /register, /login, /profile, /update, /logout
   
-**Non-functional Requirements**
+**Non-functional Requirements**  
 Security: encryption at rest and in transit (HTTPS, hased passwords)
 Scalability: should support multiple services connecting simultaneously
 Performance: login responses < 500 - 800 ms
