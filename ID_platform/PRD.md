@@ -1,7 +1,7 @@
 **Product name:** UserMembersID System - Bytewatchers Samoa  
 **Contact:** Justin Poutoa  
 **Programming language:** Python  
-**Last Updated:** ---  
+**Last Updated:** 5/11/2025  
   
   
 **Context**  
@@ -22,7 +22,7 @@ The system will handle user login and access control. It will potentially offer 
 | Authentication | Secure login using JWT (JSON Web Tokens) or OAuth2 |
 | Unique ID generation | Every user gets a globally unique ID (e.g., UUID4) |
 | Profile management | Users can view and update their personal details |
-| Password management | Users can view and update their personal details |
+| Password management | Users can reset, change, or recover their password securely |
 | API access | Other apps can connect and authenticate via the ID system |
   
 **Use Case(s)**
@@ -42,7 +42,7 @@ The system will handle user login and access control. It will potentially offer 
 - Must expose RESTful API endpoints for: /register, /login, /profile, /update, /logout
   
 **Non-functional Requirements**  
-Security: encryption at rest and in transit (HTTPS, hased passwords)  
+Security: encryption at rest and in transit (HTTPS, hashed passwords)  
 Scalability: should support multiple services connecting simultaneously  
 Performance: login responses < 500 - 800 ms  
 Localization: support english and samoan UI text (future goal)  
@@ -62,7 +62,7 @@ Maintainability: have a clear code structure with documentation
 | Backend | Python |
 | Database | PostgreSQL |
 | Authentication | JWT, OAuth2 |
-| API Documentation | Swagger/OpenAI |
+| API Documentation | Swagger/OpenAPI |
 | Deployment | Docker+DigitalOcean / Render / AWS |
 | Version Control | GitHub |  
   
