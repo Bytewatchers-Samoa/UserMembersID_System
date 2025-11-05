@@ -48,6 +48,14 @@ Performance: login responses < 500 - 800 ms
 Localization: support english and samoan UI text (future goal)  
 Maintainability: have a clear code structure with documentation  
   
+**Cost Considerations**
+| Area | Desription | Estimated Cost Impact |
+|-----------|-----------|-----------|
+| Infrastructure & Hosting | Cloud servers to host API, handle authentication, and store user data | Medium to High |
+| Database Management | PostgreSQL hosting, backups, and storage scaling | Medium |
+| Security & Authentication | Implementation of JWT/OAuth2, password hashing, and SSL certificates | Medium to High |
+| API Documentation & Tools | Swagger, CI/CD Pipelines, and monitoring tools | Low to Medium |  
+  
 **Tech Stack**
 | Component | Technology |
 |-----------|-----------|
@@ -56,5 +64,5 @@ Maintainability: have a clear code structure with documentation
 | Authentication | JWT, OAuth2 |
 | API Documentation | Swagger/OpenAI |
 | Deployment | Docker+DigitalOcean / Render / AWS |
-| Version Control | GitHub |
+| Version Control | GitHub |  
   
