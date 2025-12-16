@@ -1,11 +1,17 @@
 from fastapi import FastAPI
 from app.api.auth.register import router as register_router
 from app.api.auth.login import router as login_router
+from app.db.init_db import init_db
 
 app = FastAPI()
 
-app.include_router(register_router, prefix="/auth") #POST /auth/register
-app.include_router(login_router, prefix="/auth")    #POST /auth/login
+@app.on_event("startup")
+def on_startup():
+    init_db()
+
+
+app.include_router(register_router, prefix="/auth")
+app.include_router(login_router, prefix="/auth")
 
 @app.get("/")
 def home():
