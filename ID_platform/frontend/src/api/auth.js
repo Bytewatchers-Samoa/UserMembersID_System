@@ -34,3 +34,23 @@ export async function register(email, password, display_name) {
 
   return response.json();
 }
+
+export async function getCurrentUser() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    throw new Error("No token found");
+  }
+
+  const response = await fetch("http://127.0.0.1:8000/users/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Unauthorized");
+  }
+
+  return response.json();
+}

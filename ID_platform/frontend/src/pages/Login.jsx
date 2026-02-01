@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { login } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -14,6 +17,12 @@ export default function Login() {
       const data = await login(email, password);
       localStorage.setItem("token", data.access_token);
       alert("Login successful!");
+
+      localStorage.setItem("token", data.access_token);
+      window.location.href = "/dashboard";
+
+      //after login success
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }

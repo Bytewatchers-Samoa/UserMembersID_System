@@ -27,6 +27,8 @@ def login(credentials: LoginRequest, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
+    print("Password length:", len(credentials.password))
+
     if not verify_password(credentials.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
