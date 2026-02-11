@@ -6,6 +6,9 @@ from app.models.user import User
 from app.db.database import SessionLocal
 from app.utils.hashing import hash_password
 
+from app.models.member_id import MemberID
+from datetime import datetime, timedelta
+
 router = APIRouter()
 
 def get_db():
@@ -34,4 +37,17 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
+    member = MemberID(
+        user_id=user.id,
+        member_id=generate_member_id(user.id),
+        expiry_date=datetime.utcnow() + timedelta(days=365)
+    )
+
+    db.add(member)
+    db.commit()
+
     return new_user
+
+def generate_member_id(user_id: int):
+    year = datetime.utcnow().year
+    return f"BW-{year}-{str(user_id).zfill(4)}"

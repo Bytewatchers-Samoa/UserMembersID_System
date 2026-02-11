@@ -10,3 +10,4 @@ class User(Base):
     display_name = Column(String)
     is_active = Column(Boolean, default=True)
     is_email_verified = Column(Boolean, default=False)
+    role = Column(String, default="user")
