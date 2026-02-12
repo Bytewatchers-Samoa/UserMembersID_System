@@ -6,6 +6,7 @@ from app.db.database import Base, engine
 from app.api.auth.register import router as register_router
 from app.api.auth.login import router as login_router
 from app.api.users.me import router as users_router
+from app.api.member_ids.member_ids import router as member_ids_router
 
 #create DB tables
 Base.metadata.create_all(bind=engine)
@@ -23,6 +24,7 @@ app.add_middleware(
 app.include_router(register_router, prefix="/auth", tags=["Auth"])
 app.include_router(login_router, prefix="/auth", tags=["Auth"])
 app.include_router(users_router, prefix="/users", tags=["Users"])
+app.include_router(member_ids_router)
 
 @app.get("/")
 def root():
