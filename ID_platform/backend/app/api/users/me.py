@@ -16,7 +16,7 @@ def get_my_member_id(
     db: Session = Depends(get_db)
 ):
     member = db.query(MemberID).filter(
-        MemberID.user_id == current_user.id
+        MemberID.owner_id == current_user.id
     ).first()
 
     return member

@@ -6,10 +6,9 @@ from app.db.database import SessionLocal
 from app.models.user import User
 from app.utils.hashing import verify_password
 from app.utils.jwt_handler import create_access_token
-
+from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter()
-
 
 def get_db():
     db = SessionLocal()
@@ -20,19 +19,37 @@ def get_db():
 
 
 @router.post("/login", response_model=TokenResponse)
-def login(credentials: LoginRequest, db: Session = Depends(get_db)):
+def login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db)
+):
 
-    user = db.query(User).filter(User.email == credentials.email).first()
+    user = db.query(User).filter(User.email == form_data.username).first()
 
     if not user:
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
-    print("Password length:", len(credentials.password))
-
-    if not verify_password(credentials.password, user.hashed_password):
+    if not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
-    #create token payload
     access_token = create_access_token({"sub": str(user.id)})
 
     return TokenResponse(access_token=access_token)
+
+# @router.post("/login", response_model=TokenResponse)
+# def login(credentials: LoginRequest, db: Session = Depends(get_db)):
+
+#     user = db.query(User).filter(User.email == credentials.email).first()
+
+#     if not user:
+#         raise HTTPException(status_code=400, detail="Invalid credentials")
+
+#     print("Password length:", len(credentials.password))
+
+#     if not verify_password(credentials.password, user.hashed_password):
+#         raise HTTPException(status_code=400, detail="Invalid credentials")
+
+#     #create token payload
+#     access_token = create_access_token({"sub": str(user.id)})
+
+#     return TokenResponse(access_token=access_token)
